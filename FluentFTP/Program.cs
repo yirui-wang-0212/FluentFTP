@@ -20,28 +20,39 @@ namespace FluentFTP
 				ftp.Connect();
 
 				// define the progress tracking callback
+				//Action<FtpProgress> progress = delegate (FtpProgress p) {
+				//	if (p.Progress == 1)
+				//	{
+				//		// all done!
+				//		double percentDone = p.Progress * 100;
+				//		Console.WriteLine("-------------------- Progress: {0:g}% --------------------", percentDone);
+				//	}
+				//	else
+				//	{
+				//		// percent done = (p.Progress * 100)
+				//		double percentDone = p.Progress * 100;
+				//		Console.WriteLine("-------------------- Progress: {0:g}% --------------------", percentDone);
+				//		if (IsIntForDouble(percentDone) && ((int)percentDone % 10 == 0))
+				//		{
+				//			Console.WriteLine("-------------------- Progress: {0:g}% --------------------", percentDone);
+				//		}
+				//	}
+				//};
+
+				// define the progress tracking callback
 				Action<FtpProgress> progress = delegate (FtpProgress p) {
 					if (p.Progress == 1)
 					{
 						// all done!
-						double percentDone = p.Progress * 100;
-						Console.WriteLine("-------------------- Progress: {0:g}% --------------------", percentDone);
 					}
 					else
 					{
 						// percent done = (p.Progress * 100)
-						double percentDone = p.Progress * 100;
-						Console.WriteLine("-------------------- Progress: {0:g}% --------------------", percentDone);
-						if (IsIntForDouble(percentDone) && ((int)percentDone % 10 == 0))
-						{
-							Console.WriteLine("-------------------- Progress: {0:g}% --------------------", percentDone);
-						}
 					}
 				};
 
 				// download a file with progress tracking
-				ftp.DownloadFile(@"C:\Users\w\Developer\FTPTemp\aa.txt", "/aa.txt", FtpLocalExists.Overwrite, FtpVerify.None, progress);
-
+				ftp.DownloadFile(@"C:\Users\w\Developer\FTPTemp\UnitySetup64-2020.3.6f1.exe", "/UnitySetup64-2020.3.6f1.exe", FtpLocalExists.Overwrite, FtpVerify.None, progress);
 			}
 		}
 
